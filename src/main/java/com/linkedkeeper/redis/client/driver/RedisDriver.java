@@ -16,12 +16,14 @@ public class RedisDriver {
     private RedisPoolConfig redisPoolConfig = null;
 
     private String redisConf = null;
+    private String redisPassword = null;
+
+    final int timeout = 60 * 60;
 
     /**
      * 初始化redis
      *
      * @throws com.linkedkeeper.redis.client.exception.RedisException
-     *
      */
     public void init() throws RedisException {
         synchronized (this) {
@@ -67,7 +69,8 @@ public class RedisDriver {
         if (masterConf.length == 1) {
             throw new ExceptionInInitializerError(masterConfString + " is not host:port");
         }
-        this.masterJedisPool = new JedisPool(redisPoolConfig, masterConf[0], Integer.parseInt(masterConf[1]));
+//        this.masterJedisPool = new JedisPool(redisPoolConfig, masterConf[0], Integer.parseInt(masterConf[1]));
+        this.masterJedisPool = new JedisPool(redisPoolConfig, masterConf[0], Integer.parseInt(masterConf[1]), timeout, redisPassword);
         log.info("init master successful");
     }
 
@@ -87,4 +90,9 @@ public class RedisDriver {
     public void setRedisConf(String redisConf) {
         this.redisConf = redisConf;
     }
+
+    public void setRedisPassword(String redisPassword) {
+        this.redisPassword = redisPassword;
+    }
+
 }
