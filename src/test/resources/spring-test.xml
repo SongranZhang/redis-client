@@ -8,7 +8,7 @@
     <!-- redis cache -->
     <bean id="redisDriver" class="com.linkedkeeper.redis.client.driver.RedisDriver"
           init-method="init" destroy-method="destroy">
-        <property name="redisConf" value="127.0.0.1:6379"/>
+        <property name="redisConf" value=""/>
         <property name="redisPassword" value=""/>
     </bean>
 

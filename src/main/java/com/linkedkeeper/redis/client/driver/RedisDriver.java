@@ -55,7 +55,10 @@ public class RedisDriver {
         redisPoolConfig = new RedisPoolConfig();
 
         redisPoolConfig.setMasterConfString(redisConfData);
-        redisPoolConfig.setMaxIdle(-1);
+        redisPoolConfig.setMaxIdle(200);
+        redisPoolConfig.setMaxTotal(300);
+        redisPoolConfig.setTestOnBorrow(false);
+        redisPoolConfig.setTestOnReturn(false);
     }
 
     /**
